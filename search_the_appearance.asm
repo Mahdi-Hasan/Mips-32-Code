@@ -1,4 +1,4 @@
-#simle program to search a char in a string if found teminate
+#simple program to search a char in a string if found teminate
 .globl main
 .data 
 	char:	.byte 'i'

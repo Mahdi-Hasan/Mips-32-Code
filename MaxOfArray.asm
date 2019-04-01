@@ -1,27 +1,24 @@
 .globl main
 .data
-arrasz:		.word	5
-arra:		.word 	25,60,70,8,34
+arrasz:		.word	6
+arra:		.word 	25,60,70,8,34,80
 newline:	.asciiz "\n"
 .text 
 main:	la	$s0,arra
 	lw	$t3,arrasz
 	li	$t0,0
-	#li 	$t5,0
+	lw	$t6,($s0)	#Max=arr[0]
 initlp:	beq	$t1,$t3,initdn
-	lw	$t4,($s0)	
+	lw	$t4,($s0)		
 	addi 	$s0,$s0,4
 	addi	$t1,$t1,1
-	addu	$t5,$t4,$t5
+	bgt	$t6,$t4,lvl	#if(Max>arr[i]
+	addi	$t6,$t4,0	#max=arr[i]
+lvl:	addi	$t6,$t6,0	#max=max
 	
-	li 	$v0,1
-	move	$a0,$t5
+	b 	initlp 
+initdn:	move	$a0,$t6
+	li	$v0,1
 	syscall
-	
-	li 	$v0,4
-	la	$a0,newline
-	syscall 
-	
-	b 	initlp
-initdn:	li 	$v0,10
+	li 	$v0,10
 	syscall
