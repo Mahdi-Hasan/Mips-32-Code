@@ -7,25 +7,22 @@ notFound:.asciiz "notFound"
 .text 
 main:	la	$s0,array
 	lw	$t1,size
-	li	$t2,17
+	li	$t2,16
 	li	$t3,0
-	li	$t4,0
 itnitlp:beq	$t3,$t1,initdn
 	lw	$t0,($s0)
-	bne	$t2,$t0 ,inc	
-	addi 	$t4,$t4,1	#ap++
-inc:	addi	$t3,$t3,1	#i++
-	addi	$s0,$s0,4	#arr[i++]
+	beq	$t2,$t0,Found	
+	addi	$t3,$t3,1
+	mul 	$t5,$t3,4	#i++
+	addi	$s0,$t5,0	#arr[i++]
 	b	itnitlp
-initdn:
-	beqz 	$t4,NotFound		
-	li	$v0,4
-	la	$a0,found
-	syscall
-	li	$v0,10
-	syscall 
-NotFound:li	$v0,4
+initdn:	li	$v0,4
 	la	$a0,notFound
 	syscall 
 	li	$v0,10
 	syscall 	
+Found:	li	$v0,4
+	la	$a0,found
+	syscall
+	li	$v0,10
+	syscall	

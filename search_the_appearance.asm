@@ -13,7 +13,7 @@ main:
 srhlp:
 	beq	$s1,$zero,srchdn
 	seq	$t1,$s1,$t0
-	add	$t5,$t1,$t5
+	add	$t5,$t1,$t5	#count++
 	addi	$s0,$s0,1
 	lb	$s1,($s0)
 	b 	srhlp
