@@ -13,14 +13,14 @@ itnitlp:beq	$t3,$t1,initdn
 	lw	$t0,($s0)
 	beq	$t2,$t0,Found	
 	addi	$t3,$t3,1
-	mul 	$t5,$t3,4	#i++
+	mul 	$t5,$t3,4	#i*4--
 	addi	$s0,$t5,0	#arr[i++]
 	b	itnitlp
 initdn:	li	$v0,4
 	la	$a0,notFound
 	syscall 
 	li	$v0,10
-	syscall 	
+	syscall	
 Found:	li	$v0,4
 	la	$a0,found
 	syscall

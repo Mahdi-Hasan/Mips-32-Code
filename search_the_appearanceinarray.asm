@@ -1,4 +1,4 @@
-#No of appearance of a no in a integer array
+#No of appearance of a char in a string
 .globl main
 .data 
 array:	.word 16,13,14,15,16,1,3,13,13,16,16,16
